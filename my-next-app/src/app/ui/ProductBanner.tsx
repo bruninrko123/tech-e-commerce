@@ -1,41 +1,8 @@
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  category: string;
-}
+import Link from 'next/link';
+import { products } from '../data/products';
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Gaming Headset Pro",
-    description: "Headset gamer profissional com som surround 7.1, microfone com cancelamento de ruído e almofadas confortáveis para longas sessões de jogo.",
-    price: "R$ 299,90",
-    category: "Audio"
-  },
-  {
-    id: 2,
-    name: "RGB Gaming Mouse",
-    description: "Mouse gamer de alta precisão com sensor óptico 16.000 DPI, 7 botões programáveis e iluminação RGB customizável.",
-    price: "R$ 189,90",
-    category: "Periféricos"
-  },
-  {
-    id: 3,
-    name: "Mechanical Keyboard",
-    description: "Teclado mecânico com switches Cherry MX Blue, retroiluminação RGB por tecla e estrutura em alumínio premium.",
-    price: "R$ 449,90",
-    category: "Periféricos"
-  },
-  {
-    id: 4,
-    name: "4K Gaming Monitor",
-    description: "Monitor gamer 27' 4K com taxa de atualização de 144Hz, HDR10 e tempo de resposta de 1ms para a melhor experiência visual.",
-    price: "R$ 1.299,90",
-    category: "Monitores"
-  }
-];
+// Show only first 4 products in the banner
+const featuredProducts = products.slice(0, 4);
 
 export default function ProductBanner() {
   return (
@@ -43,15 +10,15 @@ export default function ProductBanner() {
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '16px' }}>
-            Produtos em Destaque
+            Featured Products
           </h2>
           <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
-            Descubra os melhores equipamentos para elevar sua experiência tech
+            Discover the best equipment to elevate your tech experience
           </p>
         </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-          {products.map((product) => (
+          {featuredProducts.map((product) => (
             <div 
               key={product.id} 
               style={{ 
@@ -94,7 +61,7 @@ export default function ProductBanner() {
                     border: 'none',
                     cursor: 'pointer'
                   }}>
-                    Comprar
+                    Buy Now
                   </button>
                 </div>
               </div>
@@ -103,17 +70,19 @@ export default function ProductBanner() {
         </div>
         
         <div style={{ textAlign: 'center', marginTop: '48px' }}>
-          <button style={{
-            backgroundColor: '#111827',
-            color: 'white',
-            padding: '12px 32px',
-            borderRadius: '8px',
-            fontWeight: '500',
-            border: 'none',
-            cursor: 'pointer'
-          }}>
-            Ver Todos os Produtos
-          </button>
+          <Link href="/products">
+            <button style={{
+              backgroundColor: '#111827',
+              color: 'white',
+              padding: '12px 32px',
+              borderRadius: '8px',
+              fontWeight: '500',
+              border: 'none',
+              cursor: 'pointer'
+            }}>
+              View All Products
+            </button>
+          </Link>
         </div>
       </div>
     </section>
